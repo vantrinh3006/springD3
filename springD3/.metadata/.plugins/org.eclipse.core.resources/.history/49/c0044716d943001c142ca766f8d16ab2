@@ -1,0 +1,5 @@
+package edu.vinaenter.configs;
+
+public class WebMvcConfig {
+
+}

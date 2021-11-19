@@ -1,0 +1,20 @@
+package edu.vinaenter.models;
+
+import java.util.Date;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Data
+@Getter
+@Setter
+public class News {
+	private String id;
+	private String title;
+	private String author;
+	private Date createBy;
+	private String detail;
+	private int status;
+}

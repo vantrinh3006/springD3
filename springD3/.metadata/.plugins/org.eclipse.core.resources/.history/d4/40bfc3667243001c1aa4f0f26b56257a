@@ -1,0 +1,21 @@
+package edu.vinaenter.models;
+
+import java.util.Date;
+
+import javax.xml.bind.annotation.XmlInlineBinaryData;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+
+@XmlInlineBinaryData
+@AllArgsConstructor
+@NoArgsConstructor
+public class News {
+	private String id;
+	private String title;
+	private String author;
+	private Date createBy;
+	private String detail;
+	private int status;
+}
