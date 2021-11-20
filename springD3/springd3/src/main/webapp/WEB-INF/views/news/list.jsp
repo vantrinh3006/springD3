@@ -33,7 +33,7 @@
 			<ul>
 				<c:forEach items="${datas}" var="news">
 					<li>
-						<img src="${pageContext.request.contextPath}/resource/${news.picDes}" />	
+						<img width=100px height=100px src="${pageContext.request.contextPath}/resource/${news.picDes}" />	
 						<a href="${pageContext.request.contextPath}/news/detail/${news.id}/${news.author}">
 							${news.title}- ${news.author}</a>
 					</li>

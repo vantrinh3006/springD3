@@ -59,7 +59,6 @@ public class NewsController {
 //		model.addAttribute("news", findNews);
 //		return "news/detail";
 //	}
-
 	@GetMapping("detail/{id}/{author}") // news/detail/1/jonnyTran
 	public String detail(@PathVariable(name = "id") String id, HttpSession session, @PathVariable String author,
 			Model model, RedirectAttributes re) { // dùng /{id(tự đặt)} -> đổi @RequestParam = @PathVariable
@@ -77,7 +76,7 @@ public class NewsController {
 				}
 			}
 			if (findNews == null) {
-				re.addFlashAttribute("msg", MSG_ERR);
+				re.addFlashAttribute("msg", MSG_ERR);		//addFlash : sau khi hiển thị, reload trang => mất dữ liệu
 				return "redirect:/news/list";
 			}
 		}
@@ -97,11 +96,11 @@ public class NewsController {
 //		news.getStatus();
 //		news.getDetail();
 //		news.getAuthor();
+		
 		// uploadfile to server
-		System.out.println("start....");
 		MultipartFile infoFile = news.getPic(); // get file information
 		String fileName = getFileNameServer(infoFile.getOriginalFilename()); // to get file name with extention and path :myfile/.../../pic1.png
-			System.out.println("======" + fileName);
+			System.out.println("tên file: " + fileName);
 		infoFile.transferTo(pathFile(fileName, DIR_UPLOAD, request));
 		news.setId(UUID.randomUUID().toString());
 		news.setCreatedBy(new Date());
@@ -116,9 +115,9 @@ public class NewsController {
 		// file name, null, check empty
 		if (!StringUtils.isEmpty(fileName)) {
 			String extention = FilenameUtils.getExtension(fileName); // to get file extention , ex: png, jpg,...
-			String baseName = FilenameUtils.getBaseName(fileName); // file name without extention and path
+			String baseName = FilenameUtils.getBaseName(fileName); // file name without extention and path  ex: 1
 			StringBuilder builder = new StringBuilder(); // to concatenate String
-			builder.append(baseName).append("-").append(System.nanoTime()).append(".").append(extention);
+			builder.append(baseName).append("-").append(System.nanoTime()).append(".").append(extention); // đặt lại tên theo cấu trúc để ko trùng tên 
 			return builder.toString();
 		}
 		return StringUtils.EMPTY;
